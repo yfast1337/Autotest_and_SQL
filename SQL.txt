@@ -1,0 +1,24 @@
+Запрос 1
+
+SELECT c.login AS "логин курьера",
+       COUNT(o."courierId") AS "количество заказов"
+FROM "Couriers" AS c 
+JOIN "Orders" AS o ON c.id=o."courierId" 
+WHERE o."inDelivery"=true 
+GROUP BY c.login;
+
+для cmd: SELECT c.login AS "логин курьера", COUNT(o."courierId") AS "количество заказов" FROM "Couriers" AS c JOIN "Orders" AS o ON c.id=o."courierId" WHERE o."inDelivery"=true GROUP BY c.login;
+
+
+Запрос 2
+
+SELECT track AS "номер заказа", 
+       CASE 
+	    WHEN finished=true THEN "2" 
+	    WHEN cancelled=true THEN "-1" 
+	    WHEN "inDelivery"=true THEN "1" 
+	    ELSE "0" 
+       END AS "статус заказа" 
+FROM "Orders";
+
+для cmd: SELECT track AS "Номер заказа", CASE WHEN finished=true THEN '2' WHEN cancelled=true THEN '-1' WHEN "inDelivery"=true THEN '1' ELSE '0' END AS "Статус заказа" FROM "Orders";
