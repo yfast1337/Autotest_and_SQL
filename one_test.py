@@ -5,8 +5,8 @@ import data
 
 
 # объявление функции для позитивной проверки получения ранее созданного заказа по его номеру
-def positive_assert(BODY_ORDER):
-    creation_response = new_requests.create_new_order(BODY_ORDER) # создание заказа
+def positive_assert(body_order):
+    creation_response = new_requests.create_new_order(body_order) # создание заказа
     track_num = new_requests.get_order_track(creation_response) # получение номера заказа подставляя ответ при создании заказа
     get_order_response = new_requests.get_order_by_track(track_num) # запрос заказа по ранее полученному номеру
     assert get_order_response.status_code == 200
